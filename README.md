@@ -29,3 +29,6 @@ faxii is the nickname of a little thermal printer on my desk, and this repo has 
 - Support for re-requesting a print license after it's been revoked
 - More feedback for the user
 - Logging
+
+## More likely to be up-to-date To Do list
+[Trello](https://trello.com/b/Baz3Zo1W/faxiibot)
