@@ -1,6 +1,8 @@
 # faxii
 faxii is the nickname of a little thermal printer on my desk, and this repo has the source code for the Telegram bot that controls it.
 
+[Current version: 1.0](/Releases/v1.0)
+[Changelog](changelog.md)
 
 ### Required packages:
 - python-telegram-bot
