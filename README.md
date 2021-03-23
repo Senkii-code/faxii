@@ -4,7 +4,7 @@ faxii is the nickname of a little thermal printer on my desk, and this repo has 
 
 ### Required packages:
 - python-telegram-bot
-- python-escpos
+- escpos
 - tinydb
 - datetime
 - Pillow
