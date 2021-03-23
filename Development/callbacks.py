@@ -11,9 +11,10 @@ from text import *
 
 
 class printer:
-    def __init__(self, config, queue):
+    def __init__(self, config, queue, db):
         self.cf = config
         self.queue = queue
+        self.db = db
         self.p = Serial(devfile=self.cf['port'], baudrate=self.cf['baud'])
 
 
@@ -52,7 +53,8 @@ class printer:
                     # If an image was printed, give the printer two seconds to cool down
                     if item['image']:
                         sleep(2)
-
+        # After queue is empty, remove queue
+        self.db.drop_table('queue')
 
 class handler:
     def __init__(self, config, db):
@@ -63,7 +65,7 @@ class handler:
         self.queue = self.db.table("queue")
         self.users = db.table("users")
         self.printunit = printer(self.cf,
-                                 self.queue)
+                                 self.queue, self.db)
 
         if not "users" in db.tables():
             self.users.insert({"name": "admin",
