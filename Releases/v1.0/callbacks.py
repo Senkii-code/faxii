@@ -24,7 +24,8 @@ class printer:
 
                 # Check if the message has at least some data. It should, but you never know.
                 if item['text'] or item['urls'] or item['image']:
-                    self.p.text(f"Name: {item['name']}\nID:   {item['id']}\nDate: {item['date'].split('+')[0]}\n\n")
+                    if item['level'] < 2:
+                        self.p.text(f"Name: {item['name']}\nID:   {item['id']}\nDate: {item['date'].split('+')[0]}\n\n")
                     context.bot.send_message(chat_id=item['id'], text=printing_text)
 
                     # Print text if text exists
