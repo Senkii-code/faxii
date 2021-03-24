@@ -1,6 +1,6 @@
 # Changelog
 
-## v1.1
+## indev v1.1
 - Fixed sleep/wake function not blocking prints
 
 ## v1.0
