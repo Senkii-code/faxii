@@ -19,7 +19,7 @@ class printer:
 
 
     def doeprinten(self, context):
-        
+
         # Voor alle items in queue, check voor text, qr codes, image
         for item in self.queue:
             if item['printed'] is False:
@@ -54,6 +54,7 @@ class printer:
                     # If an image was printed, give the printer two seconds to cool down
                     if item['image']:
                         sleep(2)
+
         # After queue is empty, remove queue
         self.db.drop_table('queue')
 
@@ -68,6 +69,7 @@ class handler:
         self.printunit = printer(self.cf,
                                  self.queue, self.db)
 
+        # If the "users" document does not exist, create it and add the admin account
         if not "users" in db.tables():
             self.users.insert({"name": "admin",
                                "uname": "admin",
@@ -145,7 +147,11 @@ class handler:
 
     # QUEUE updating
             # Add gathered data to queue, if no text/urls/image, Null will be inserted into the respective entry
-            self.queue.insert({"name": message.chat.first_name + " " + message.chat.last_name,
+            if message.chat.last_name != None:
+                name = f"{message.chat.first_name} {message.chat.last_name}"
+            else:
+                name = message.chat.first_name
+            self.queue.insert({"name": name,
                                "id": message.chat.id,
                                "level": level,
                                "date": str(date),
