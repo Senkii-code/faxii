@@ -19,6 +19,7 @@ class printer:
 
 
     def doeprinten(self, context):
+        
         # Voor alle items in queue, check voor text, qr codes, image
         for item in self.queue:
             if item['printed'] is False:
@@ -80,7 +81,7 @@ class handler:
 
     def get_level(self, id):
         result = self.users.search(Query().id == id)
-        if result is not None:
+        if result != []:
             level = result[0]['level']
         else:
             level = -1

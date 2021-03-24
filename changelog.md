@@ -2,6 +2,7 @@
 
 ## indev v1.1
 - Fixed sleep/wake function not blocking prints
+- Experimental temp fix for users not having name/uname
 
 ## v1.0
 - Fixed image orientations

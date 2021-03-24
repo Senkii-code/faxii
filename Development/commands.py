@@ -33,7 +33,7 @@ class start(cmdhandler):
             username = '@' + message.chat.username if message.chat.username is not None else message.chat.first_name
             context.bot.send_message(chat_id=self.handler.cf['admin_id'], text=f"Print request from:\n{message.chat.id}\n{message.chat.username}\nDo you want to accept them?")
             context.bot.send_message(chat_id=self.handler.cf['admin_id'], text=f"/grant {message.chat.id}")
-            self.handler.users.insert({"name": message.chat.first_name + " " + message.chat.last_name,
+            self.handler.users.insert({"name": f"{message.chat.first_name} {message.chat.last_name}",
                                        "uname": message.chat.username,
                                        "id": message.chat.id,
                                        "added": str(datetime.now()).split('.')[0]+"01:00",
