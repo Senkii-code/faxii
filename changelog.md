@@ -1,6 +1,9 @@
 # Changelog
 
-## V1.0
+## v1.1
+- Fixed sleep/wake function not blocking prints
+
+## v1.0
 - Fixed image orientations
 - Fixed URL recognizer
 - Fixed queue

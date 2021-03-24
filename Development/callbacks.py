@@ -152,8 +152,10 @@ class handler:
                                "image": image,
                                "urls": urls,
                                "printed": False})
-
-            self.printunit.doeprinten(context)
+            if self.sleep:
+                message.reply_text(f"Hey, I'm sleeping right now, I will print your message when I wake up again!")
+            else:
+                self.printunit.doeprinten(context)
 
 
     def findurls(self, text, urls):
