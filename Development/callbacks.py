@@ -6,6 +6,7 @@ from escpos import *
 from PIL import Image
 from time import sleep
 from emoji import demojize
+import pytz
 
 from text import *
 
@@ -74,7 +75,7 @@ class handler:
             self.users.insert({"name": "admin",
                                "uname": "admin",
                                "id": self.cf["admin_id"],
-                               "added": str(datetime.now()).split('.')[0]+"+01:00",
+                               "added": str(datetime.utcnow().replace(tzinfo=pytz.UTC).astimezone(pytz.timezone("Europe/Amsterdam"))).split('.')[0],
                                "level": 2,
                                "messages": 0,
                                "characters": 0,
@@ -154,7 +155,7 @@ class handler:
             self.queue.insert({"name": name,
                                "id": message.chat.id,
                                "level": level,
-                               "date": str(date),
+                               "date": str(date.replace(tzinfo=pytz.UTC).astimezone(pytz.timezone("Europe/Amsterdam"))),
                                "text": text,
                                "image": image,
                                "urls": urls,
