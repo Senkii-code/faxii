@@ -93,7 +93,7 @@ class handler:
 
     def message(self, update, context):
         message = update.message
-        date = message.date
+        date = message.date.replace(tzinfo=pytz.UTC).astimezone(pytz.timezone(self.cf['timezone']))
         level = self.get_level(message.chat.id)
 
     # LEVEL check
@@ -155,7 +155,7 @@ class handler:
             self.queue.insert({"name": name,
                                "id": message.chat.id,
                                "level": level,
-                               "date": str(date.replace(tzinfo=pytz.UTC).astimezone(pytz.timezone("Europe/Amsterdam"))),
+                               "date": str(date),
                                "text": text,
                                "image": image,
                                "urls": urls,

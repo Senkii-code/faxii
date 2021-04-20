@@ -11,7 +11,6 @@ faxii is the nickname of a little thermal printer on my desk, and this repo has 
 - tinydb
 - datetime
 - Pillow
-- time
 - emoji
 - ujson
 
@@ -23,6 +22,7 @@ faxii is the nickname of a little thermal printer on my desk, and this repo has 
 - Prints images in portrait layout, unless they'd be super long, then it just prints them landscape
 - Print license support, including grant/revoke rights for owner
 - Is just generally pretty neat?
+- Prints timestamp on messages from anyone other than admin, timezones from [this list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) are supported.
 
 
 ## To Do
