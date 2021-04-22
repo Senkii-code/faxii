@@ -13,7 +13,6 @@ cf = ujson.load(open(cffile, "r"))
 db = TinyDB(dbfile)
 
 
-
 #           Command      Function     Level
 commands = {"start":    (cmd.start,     0),
             "help":     (cmd.help,      0),
@@ -24,7 +23,6 @@ commands = {"start":    (cmd.start,     0),
             "revoke":   (cmd.revoke,    2),
             "sleep":    (cmd.sleep,     2),
             "wake":     (cmd.wake,      2)}
-
 
 
 if __name__ == '__main__':
