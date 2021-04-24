@@ -7,6 +7,7 @@ from PIL import Image
 from time import sleep
 from emoji import demojize
 import pytz
+import os
 
 from text import *
 
@@ -44,6 +45,7 @@ class printer:
                     # Print image if image exists
                     if item['image']:
                         self.p.image(item['image'])
+                        os.remove(item['image'])
 
                     # Cut if auto_cut is enabled
                     if self.cf['auto_cut']:
@@ -144,6 +146,7 @@ class handler:
                     img = img.rotate(angle=90, expand=True)
                 img = img.resize((self.cf['max_width'], int(img.size[1] * self.cf['max_width']/img.size[0])))
                 img.save(f"./imgcache/{imageFile.file_unique_id}.jpeg", 'JPEG')
+                os.remove(image)
                 image = f"./imgcache/{imageFile.file_unique_id}.jpeg"
 
     # QUEUE updating
