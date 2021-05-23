@@ -69,8 +69,7 @@ class handler:
 
         self.queue = self.db.table("queue")
         self.users = db.table("users")
-        self.printunit = printer(self.cf,
-                                 self.queue, self.db)
+        self.printunit = printer(self.cf, self.queue, self.db)
 
         # If the "users" document does not exist, create it and add the admin account
         if not "users" in db.tables():
