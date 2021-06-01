@@ -31,7 +31,7 @@ if __name__ == '__main__':
 
     mhandler = cbs.handler(cf, db)
 
-    filters = [Filters.text, Filters.document, Filters.photo, Filters.sticker]
+    filters = [Filters.text, Filters.document, Filters.photo, Filters.sticker, Filters.forwarded, Filters.reply]
 
     for command, (handler, level) in commands.items():
         dp.add_handler(CommandHandler(command, handler(level, mhandler).handlecmd))

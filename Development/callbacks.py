@@ -8,6 +8,7 @@ from time import sleep
 from emoji import demojize
 import pytz
 import os
+import requests
 
 from text import *
 
@@ -61,6 +62,7 @@ class printer:
         # After queue is empty, remove queue
         self.db.drop_table('queue')
 
+
 class handler:
     def __init__(self, config, db):
         self.cf = config
@@ -94,6 +96,9 @@ class handler:
 
     def message(self, update, context):
         message = update.message
+        if message is None:
+            message = update.edited_message
+
         date = message.date.replace(tzinfo=pytz.UTC).astimezone(pytz.timezone(self.cf['timezone']))
         level = self.get_level(message.chat.id)
 
@@ -165,6 +170,7 @@ class handler:
             if self.sleep:
                 message.reply_text(f"Hey, I'm sleeping right now, I will print your message when I wake up again!")
             else:
+                # requests.post(self.cf["LED_ping_IP"])
                 self.printunit.doeprinten(context)
 
 
@@ -211,11 +217,21 @@ class handler:
 
 
     def gosleep(self, update, context):
-        context.bot.send_message(chat_id=self.cf['admin_id'], text=f"Sleeping...")
-        self.sleep = True
+        if not self.sleep:
+            context.bot.send_message(chat_id=self.cf['admin_id'], text=f"Sleeping...")
+            self.sleep = True
+        else:
+            context.bot.send_message(chat_id=self.cf['admin_id'], text=f"W- What? I was already asleep >_>")
 
 
     def wake(self, update, context):
-        context.bot.send_message(chat_id=self.cf['admin_id'], text=f"Good morning!")
-        self.sleep = False
-        self.printunit.doeprinten(context)
+        if self.sleep:
+            context.bot.send_message(chat_id=self.cf['admin_id'], text=f"Good morning!")
+            self.sleep = False
+            self.printunit.doeprinten(context)
+        else:
+            context.bot.send_message(chat_id=self.cf['admin_id'], text=f"What made you think I was sleeping?")
+
+    def test(self, update, context):
+        self.printunit.p.text(update.message)
+        self.printunit.p.cut()
