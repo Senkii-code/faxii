@@ -11,7 +11,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text="I'm a bot, please talk to me!")
 
 if __name__ == '__main__':
-    application = ApplicationBuilder().token('1620015913:AAHE-hVqNoVFkqdHfToW4hM66p0PvrFoAgU').build()
+    application = ApplicationBuilder().token(TOKEN_HERE).build()
     
     start_handler = CommandHandler('start', start)
     application.add_handler(start_handler)
