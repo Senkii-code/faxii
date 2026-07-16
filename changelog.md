@@ -1,6 +1,6 @@
 # Changelog
 
-## indev v1.1
+## dev v1.1
 - Fixed sleep/wake function not blocking prints
 - Experimental temp fix for users not having name/uname
 - Fixed timestamp on messages. Prefered timezone is in config now.
